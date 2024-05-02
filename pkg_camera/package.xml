@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>s_s_ros</name>
+  <name>pkg_camera</name>
   <version>0.0.0</version>
-  <description>The S_S_ROS package</description>
+  <description>The pkg_camera package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="daohui.liu@mail.utoronto.ca">root</maintainer>
+  <maintainer email="root@todo.todo">root</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
@@ -19,7 +19,7 @@
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
   <!-- Optional attribute type can be: website, bugtracker, or repository -->
   <!-- Example: -->
-  <!-- <url type="website">http://wiki.ros.org/test</url> -->
+  <!-- <url type="website">http://wiki.ros.org/pkg_camera</url> -->
 
 
   <!-- Author tags are optional, multiple are allowed, one per tag -->
