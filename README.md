@@ -1,2 +1,3 @@
 # S_S_ROS
-S_S stands for step by step
+
+使用这个仓库整理一下之前记的笔记, 也可以用来给之后的同学做参考
