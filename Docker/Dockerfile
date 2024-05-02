@@ -14,4 +14,7 @@ RUN apt-get update && \
     apt-get install -y git && \
     apt-get install -y xauth x11-apps # This is for GUI testing
 
+# Intel realsense camera installation
+RUN apt-get install -y ros-$ROS_DISTRO-realsense2-camera
+
 RUN echo "ALL Done"
