@@ -1,7 +1,7 @@
 # S_S_ROS
 
-[![English](https://img.shields.io/badge/README-English-blue)](docs/README_en.md)
-[![中文](https://img.shields.io/badge/README-中文-orange)](../README.md)
+[![English](https://img.shields.io/badge/README-English-blue)](README_en.md)
+[![中文](https://img.shields.io/badge/README-中文-orange)](README.md)
 
 I would like to use this repository to organize the notes I previously made, and it can also be used as a reference for future students.
 

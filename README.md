@@ -1,6 +1,6 @@
 # S_S_ROS
 
-[![English](https://img.shields.io/badge/README-English-blue)](docs/README_en.md)
+[![English](https://img.shields.io/badge/README-English-blue)](README_en.md)
 [![中文](https://img.shields.io/badge/README-中文-orange)](README.md)
 
 使用这个仓库整理一下之前记的笔记, 也可以用来给之后的同学做参考
