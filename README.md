@@ -5,6 +5,14 @@
 
 使用这个仓库整理一下之前记的笔记, 也可以用来给之后的同学做参考
 
+## 0. 下载本仓库
+```bash{.line-numbers}
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+
+git clone https://github.com/OneOneLiu/s_s_ros.git
+```
+
 ## 1. 一些说明
 
 - 本仓库面向是一个面向**初学者**的**实操导向**`ROS`使用笔记. 针对的任务机器人抓取操纵等任务, 涉及到的硬件主要是机械臂, 相机, 以及电动夹爪, 不涉及移动机器人, 无人机等技术.

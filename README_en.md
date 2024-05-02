@@ -5,6 +5,14 @@
 
 I would like to use this repository to organize the notes I previously took, and also as a reference for future students.
 
+## 0. Download
+```bash{.line-numbers}
+mkdir -p ~/catkin_ws/src
+cd ~/catkin_ws/src
+
+git clone https://github.com/OneOneLiu/s_s_ros.git
+```
+
 ## 1. Introduction
 
 - This repository is a **practical** guide to using `ROS` for **beginners**. It focuses on tasks such as robot grasping and manipulation, involving hardware such as robotic arms, cameras, and grippers, but not mobile robots or drones.
