@@ -19,7 +19,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 - 读的同学需要对`ROS`有一些基本的了解, 知道常用的概念, 如`ROS`的软件包([`package`](https://wiki.ros.org/Packages)), 节点([`node`](https://wiki.ros.org/ROS/Tutorials/UnderstandingNodes)), 和常用命令, 如`catkin_make`.
 - 本仓库基于`ROS1 noetic`版本.
 
-### 1.1. 好ROS 编程习惯
+### 1.1. 好的 ROS 编程习惯
 要完成一个机器人操作任务, 我们需要使用`ROS`来控制多个硬件, 包括机械臂, 夹爪, 相机, 力/力矩传感器等. 那么在开发的时候就需要在 `/catkin_ws/src` 目录下创建软件包来实现这些功能, 也就是`package`. 
 
 一个比较好的习惯是尽量把不同的功能做好隔离, 也就是[**模块化**](https://answers.ros.org/question/364674/how-to-properly-structure-a-ros-package/). 比如, 相机的功能就创建一个相机的`package`, 机器人就创建机器人的`package`. 最后整体控制所有的主程序, 再创建一个整体功能的`package`.
@@ -93,8 +93,10 @@ catkin_ws/
 >
 > 下载使用官方或者第三方提供的ROS package有多种方式, 具体可以参考[这个说明](docs/ROS_basics/install_ros_packages.md).
 
-## ToDo
+## ToDos
 - [ ] pkg_camera related
   - [ ] add notes for python executables in launch file
   - [ ] add notes for launch file (official) parameter setup
   - [ ] add notes for point cloud visualization
+- [ ] Docker
+  - [ ] installation notes
