@@ -56,3 +56,7 @@ roslaunch pkg_camera camera_vis_set_parameters.launch
 | ![parameter_configure](images/parameter_configure.png) |
 | :----------------------------------------------------: |
 |           **Parameter Configuration Screen**           |
+
+> > :memo: **Note**
+>
+> 如果左边没有显示可调节的选项, 点击下方的刷新即可
