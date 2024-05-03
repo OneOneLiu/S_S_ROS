@@ -5,21 +5,22 @@
 
 使用这个仓库整理一下之前记的笔记, 也可以用来给之后的同学做参考
 
-## 0. 下载本仓库
+## 1. 下载本仓库
 ```bash{.line-numbers}
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 
+# 如果不是clone到上面的文件夹, 则需要在Docker的启动文件中修改volume挂载的路径
 git clone https://github.com/OneOneLiu/s_s_ros.git
 ```
 
-## 1. 一些说明
+## 2. 一些说明
 
 - 本仓库面向是一个面向**初学者**的**实操导向**`ROS`使用笔记. 针对的任务机器人抓取操纵等任务, 涉及到的硬件主要是机械臂, 相机, 以及电动夹爪, 不涉及移动机器人, 无人机等技术.
 - 读的同学需要对`ROS`有一些基本的了解, 知道常用的概念, 如`ROS`的软件包([`package`](https://wiki.ros.org/Packages)), 节点([`node`](https://wiki.ros.org/ROS/Tutorials/UnderstandingNodes)), 和常用命令, 如`catkin_make`.
 - 本仓库基于`ROS1 noetic`版本.
 
-### 1.1. 好的 ROS 编程习惯
+### 2.1. 好的 ROS 编程习惯
 要完成一个机器人操作任务, 我们需要使用`ROS`来控制多个硬件, 包括机械臂, 夹爪, 相机, 力/力矩传感器等. 那么在开发的时候就需要在 `/catkin_ws/src` 目录下创建软件包来实现这些功能, 也就是`package`. 
 
 一个比较好的习惯是尽量把不同的功能做好隔离, 也就是[**模块化**](https://answers.ros.org/question/364674/how-to-properly-structure-a-ros-package/). 比如, 相机的功能就创建一个相机的`package`, 机器人就创建机器人的`package`. 最后整体控制所有的主程序, 再创建一个整体功能的`package`.
@@ -28,7 +29,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 
 与此同时, 在每个`package`下面, 我们也应当做好文件夹的整理和分区, 比如把所有的`launch` file都放到`launch`目录下, 源文件都放到 `scripts` 目录下, 同时给每个文件夹或者功能都添加说明文档 `README.md`. 
 
-### 1.2. 使用Docker
+### 2.2. 使用Docker
 建议使用`Docker`进行所有`ROS`项目的测试和开发, 这会极大地减少环境配置所带来的问题, 提高工作效率. 借用一下形容 `python` 的话:
 > `Life is short, you need Docker`!
 
@@ -36,7 +37,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 
 > - 这是一个很不错的视频教程: https://www.youtube.com/watch?v=qWuudNxFGOQ
 
-### 1.3. 文件夹说明
+### 2.3. 文件夹说明
 
 依据前一节说的编程习惯, 本仓库是包含多个`ROS packages`的, 而不是把这整个仓库只作为一个`ROS`的`package`, (我以前是这么搞的, 你们不要这么做, 这是个很坏的习惯). 在实际测试的时候, 我们使用`Docker`, 我会通过`Docker` 的[`volume`](https://docs.docker.com/storage/volumes/)功能把每个子文件夹都映射到`container`容器环境中的`/catkin_ws/src/`目录下. 你可以在这个[`Docker`启动文件](Docker/noetic.bash)里面找到相关命令.
 
@@ -75,7 +76,10 @@ catkin_ws/
     └── pkg_robot
 ```
 
-## 2. 常用硬件的使用
+### 2.4. 使用说明
+本仓库是模块化的入门教程, 每个`pkg_`开头的文件都是一个单独的功能包(`package`), 比如使用相机, 使用夹爪等. 每个`package`里都有单独的源代码以及测试文件, 可以单独参考使用.
+
+## 3. 常用硬件的使用
 
 - `Intel Realsense` 相机的使用, 请参照 [docs/Hardware/1.Realsense_camera.md](docs/Hardware/1.Realsense_camera.md).
 
@@ -93,7 +97,7 @@ catkin_ws/
 >
 > 下载使用官方或者第三方提供的ROS package有多种方式, 具体可以参考[这个说明](docs/ROS_basics/install_ros_packages.md).
 
-## ToDos
+## 4. ToDos
 - [ ] pkg_camera related
   - [ ] add notes for python executables in launch file
   - [ ] add notes for launch file (official) parameter setup

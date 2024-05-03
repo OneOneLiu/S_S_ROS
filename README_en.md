@@ -10,6 +10,7 @@ I would like to use this repository to organize the notes I previously took, and
 mkdir -p ~/catkin_ws/src
 cd ~/catkin_ws/src
 
+# If you don't clone to the folder above, you need to modify the path of the volume mount in the Docker startup file.
 git clone https://github.com/OneOneLiu/s_s_ros.git
 ```
 
@@ -75,6 +76,8 @@ catkin_ws/
     └── pkg_robot
 ```
 
+### Usage Instruction
+This repository is a modular tutorial. Each folder starting with `pkg_` is a separate `ROS` software package, such as camera package (`pkg_camera`), etc. Each package contains its own source code and test files, which can be used independently.
 ## 2. Common Hardware Usage
 
 - For using the `Intel Realsense` camera, please refer to `docs/Hardware/1.Realsense_camera.md`.
