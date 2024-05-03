@@ -39,9 +39,10 @@ This repository provides a simple Docker startup command, which is located in th
 
 ### 2.3. Folder Descriptions
 
-Following the programming practices mentioned earlier, this repository contains multiple `ROS packages`, rather than treating the entire repository as a single `ROS` package (which was a bad practice that I used to follow, but you should avoid). I will use the `Docker` [`volume`](https://docs.docker.com/storage/volumes/) feature to map each subfolder to the `/catkin_ws/src/` directory in the container environment. You can check the command in this [Docker startup file](Docker/noetic.bash).
+Following the programming practices mentioned earlier, this repository contains multiple `ROS packages`, rather than treating the entire repository as a single `ROS` package (which was a bad practice that I used to follow, which you should avoid). I create a separate folder for each of these packages under the `src` folder. Then, the `src` folder is mapped to the `/catkin_ws/src/` directory in the container using the `Docker` [`volume`](https://docs.docker.com/storage/volumes/) feature. You can check the related command in this [Docker startup file](Docker/noetic.bash).
 
 Therefore, the folder structure of this repository will look like this:
+
 ```bash{.line-numbers}
 s_s_ros/
 ├── Docker
@@ -54,19 +55,20 @@ s_s_ros/
 │       ├── 1.Realsense_camera.md
 │       ├── 2.UR_robot.md
 │       └── 3.Robotiq_gripper.md
-├── pkg_camera
-├── pkg_grasp
-├── pkg_gripper
-├── pkg_robot
 ├── README_en.md
 ├── README.md
+└── src
+    ├── pkg_camera
+    ├── pkg_grasp_main
+    ├── pkg_gripper
+    └── pkg_robot
 ```
 
 - The `Docker` directory contains files for building and starting the Docker environment, along with related instructions.
 - The `docs` directory contains various documentation.
-- Those starting with `pkg_` are packages added for various features; using pkg_ as a prefix might look strange, but it groups them together, so let's stick with that.
+- Those folders under `src` starting with `pkg_` are packages added for various features; using `pkg_` as a prefix might look strange, but it groups them together, so I stick with that.
 
-After the Docker container starts, before the first catkin_make, the directory structure seen in the virtual environment will roughly be as follows:
+After the Docker container starts and before the first catkin_make, the directory structure in the container should roughly be as follows:
 ```bash{.line-numbers}
 catkin_ws/
 └── src

@@ -5,10 +5,7 @@ docker run --rm -it \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --env="XAUTHORITY=$XAUTH" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/pkg_camera:/catkin_ws/src/pkg_camera" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/pkg_robot:/catkin_ws/src/pkg_robot" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/pkg_gripper:/catkin_ws/src/pkg_gripper" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/pkg_grasp_main:/catkin_ws/src/pkg_grasp_main" \
+    --volume="/home/$USER/catkin_ws/src/s_s_ros/src:/catkin_ws/src" \
     --volume="/dev/bus/usb:/dev/bus/usb" \
     --volume="/tmp/.docker.xauth:/tmp/.docker.xauth:rw" \
     --net=host \
