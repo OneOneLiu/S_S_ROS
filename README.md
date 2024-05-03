@@ -91,4 +91,10 @@ catkin_ws/
 
 > :memo: **Note**
 >
-> 下载使用官方或者第三方提供的ROS package有多种方式, 具体可以参考[这个说明](docs/ROS_basics/install_ros_packages.md). 
+> 下载使用官方或者第三方提供的ROS package有多种方式, 具体可以参考[这个说明](docs/ROS_basics/install_ros_packages.md).
+
+## ToDo
+- [ ] pkg_camera related
+  - [ ] add notes for python executables in launch file
+  - [ ] add notes for launch file (official) parameter setup
+  - [ ] add notes for point cloud visualization
