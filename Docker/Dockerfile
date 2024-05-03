@@ -20,4 +20,14 @@ RUN apt-get install -y ros-$ROS_DISTRO-realsense2-camera && \
     apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module && \
     pip3 install pyrealsense2
 
+# Dependencies layer # Ur_driver
+RUN mkdir -p /catkin_ws/src && \
+    cd /catkin_ws/src && \
+    git clone -b noetic-devel https://github.com/ros-industrial/universal_robot.git && \
+    git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
+
+# Use rosdep to install all dependencies according to the package.xml files in all src folders
+RUN cd /catkin_ws && \
+    rosdep install --from-paths src --ignore-src -r -y
+
 RUN echo "ALL Done"
