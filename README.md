@@ -22,7 +22,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 ### 1.1. 好ROS 编程习惯
 要完成一个机器人操作任务, 我们需要使用`ROS`来控制多个硬件, 包括机械臂, 夹爪, 相机, 力/力矩传感器等. 那么在开发的时候就需要在 `/catkin_ws/src` 目录下创建软件包来实现这些功能, 也就是`package`. 
 
-一个比较好的习惯是尽量把不同的功能做好隔离, 也就是**模块化**. 比如, 相机的功能就创建一个相机的`package`, 机器人就创建机器人的`package`. 最后整体控制所有的主程序, 再创建一个整体功能的`package`.
+一个比较好的习惯是尽量把不同的功能做好隔离, 也就是[**模块化**](https://answers.ros.org/question/364674/how-to-properly-structure-a-ros-package/). 比如, 相机的功能就创建一个相机的`package`, 机器人就创建机器人的`package`. 最后整体控制所有的主程序, 再创建一个整体功能的`package`.
 
 这种模块化的思想可以帮助我们提高代码的可读性和可维护性，促进代码和功能的重复使用.
 
@@ -87,7 +87,7 @@ catkin_ws/
 > - [Intel RealSense相机的ROS软件包](https://github.com/IntelRealSense/realsense-ros)
 > - [UR 机器人的ROS驱动软件包](https://github.com/UniversalRobots/Universal_Robots_ROS_Driver)
 
-一般要使用这些硬件, 直接下载使用他们官方的软件包就可以了, 无需自己再创建一个package. 如果需要自定义功能, 一般也是在他们的packages里面添加, 或者在自己项目的main package里添加, 无需再创建一个新的package. 我这里仍旧创建相机, 机器人以及夹爪的三个packages是为了展示这一过程. 
+一般要使用这些硬件, 直接下载使用他们官方的软件包就可以了, 无需自己再创建一个`package`. 如果需要自定义功能, 一般也是在他们的`packages`里面添加, 或者在自己项目的`main package`里添加, 无需再创建一个新的`package`. 我这里仍旧创建相机, 机器人以及夹爪的三个`packages`是为了展示这一过程.
 
 > :memo: **Note**
 >

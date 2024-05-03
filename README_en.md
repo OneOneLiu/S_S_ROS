@@ -22,7 +22,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 ### 1.1. Good ROS Programming Practices
 To complete a robotic manipulation task, we need to use `ROS` to control multiple hardware components, including robotic arms, grippers, cameras, force/torque sensors, etc. Therefore, we need to create software `packages` in the `/catkin_ws/src` directory to implement the functions for using these hardware.
 
-A good practice is to modularize different functions. For example, it is recommended to create a separate package for camera functions and another package for robot functions. Then, we can create a main program package that integrates all the functions.
+A good practice is to [**modularize different functions**](https://answers.ros.org/question/364674/how-to-properly-structure-a-ros-package/). For example, it is recommended to create a separate package for camera functions and another package for robot functions. Then, we can create a main program package that integrates all the functions.
 
 This modular idea helps improve code readability, maintainability, and promotes code and function reuse.
 
