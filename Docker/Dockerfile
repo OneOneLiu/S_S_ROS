@@ -12,9 +12,12 @@ RUN apt-get update && \
     apt install -y tree && \
     apt install -y gdb && \
     apt-get install -y git && \
+    apt-get install -y python3-pip && \
     apt-get install -y xauth x11-apps # This is for GUI testing
 
-# Intel realsense camera installation
-RUN apt-get install -y ros-$ROS_DISTRO-realsense2-camera
+# Intel realsense camera
+RUN apt-get install -y ros-$ROS_DISTRO-realsense2-camera && \
+    apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module && \
+    pip3 install pyrealsense2
 
 RUN echo "ALL Done"
