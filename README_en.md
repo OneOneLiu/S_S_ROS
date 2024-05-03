@@ -82,7 +82,7 @@ This repository is a modular tutorial. Each folder starting with `pkg_` is a sep
 
 - For using the `Intel Realsense` camera, please refer to [`docs/Hardware/1.Realsense_camera.md`](docs/Hardware/1.Realsense_camera.md).
 - For using the `UR robot`, please refer to [`docs/Hardware/2.UR_robot.md`](docs/Hardware/2.UR_robot.md).
-- For using the `Robotiq` gripper, please refer to `docs/Hardware/[3.Robotiq_gripper.md`](docs/Hardware/3.Robotiq_gripper.md).
+- For using the `Robotiq` gripper, please refer to [`docs/Hardware/3.Robotiq_gripper.md`](docs/Hardware/3.Robotiq_gripper.md).
 
 The above are all very commonly used hardware, and their official sites also provide corresponding ROS packages, such as:
 
