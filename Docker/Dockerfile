@@ -27,7 +27,14 @@ RUN mkdir -p /catkin_ws/src && \
     git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
 
 # Use rosdep to install all dependencies according to the package.xml files in all src folders
+# And compile the workspace
 RUN cd /catkin_ws && \
-    rosdep install --from-paths src --ignore-src -r -y
+    rosdep install --from-paths src --ignore-src -r -y && \
+    /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make'
+
+
+# Automatically source
+RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
+    echo "source /catkin_ws/devel/setup.bash" >> /root/.bashrc
 
 RUN echo "ALL Done"
