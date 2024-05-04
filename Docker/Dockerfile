@@ -37,4 +37,12 @@ RUN cd /catkin_ws && \
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
     echo "source /catkin_ws/devel/setup.bash" >> /root/.bashrc
 
+# Fix issues when using remote server from ssh **Start**
+## Fix network setup
+ENV ROS_HOSTNAME=localhost
+ENV ROS_MASTER_URI=http://localhost:11311
+# For correct configure QT library on the remote server
+RUN strip --remove-section=.note.ABI-tag /usr/lib/x86_64-linux-gnu/libQt5Core.so.5
+# Fix issues when using remote server from ssh End** 
+
 RUN echo "ALL Done"
