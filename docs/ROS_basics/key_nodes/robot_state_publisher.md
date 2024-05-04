@@ -8,17 +8,17 @@
 - `robot_state_publisher` uses the `URDF` specified by the parameter `robot_description` and the joint positions from the topic `joint_states` to calculate the forward kinematics of the robot and publish the results via `tf`. 
 
 即，这个节点主要做三件事：
-- 从参数服务器中的 `robot_description` 参数中读取当前机器人的 URDF 信息 （`机器人硬件结构长什么样`），同时从 `joint_states` 这个话题订阅机器人的关节角度信息（`机器人每个关节处在什么角度`）。
+- 从参数服务器中的 `robot_description` 参数中读取当前机器人的 URDF 信息 （`机器人硬件结构长什么样`），同时从 `joint_states` 话题订阅机器人的关节角度信息（`机器人每个关节处在什么角度`）。
 - 使用这两种信息进行前向运动学计算，计算出机器人上所有的坐标系（`比如UR机器人基坐标有个坐标系，末端也有坐标系，中间每个关节都有自己的坐标系`）位置。
 - 将这些关节信息发布到ROS的坐标系管理系统 [`tf`](../concepts/tf.md) 中去。这样所有的ROS组成部分都可以去 [`tf`](../concepts/tf.md)  中了解当前机器人各个关节的信息。
 
 总的来说，他就是把机器人的关节角度角度，速度等间接信息，计算得到机器人上坐标系的信息，所以这里的state我觉得应该翻译成机器人坐标系状态。
 
 ## 测试和使用
-要测试robot_state_publisher这个节点, 我们需要给他提供所需要的两类信息
+要测试robot_state_publisher节点, 我们需要给他提供所需要的两类信息
 - 参数: `/robot_description`
 - 话题: `/joint_states`
-其中参数 `/robot_description` 如何启动我们在[参数服务这个文档](../concepts/service_params.md)里已经说明了. 话题 `/joint_states` 一般是由机器人的交互节点来发布, 在UR机器人这里就对应 `/ur_hardware_interface` 这个节点.
+其中参数 `/robot_description` 如何启动我们在[参数服务文档](../concepts/service_params.md)里已经说明了. 话题 `/joint_states` 一般是由机器人的硬件驱动节点发布, 在UR机器人里就是 `/ur_hardware_interface` 节点.
 
 单独启动这个节点的话需要手动设置的参数比较多, 所以我们直接启动 ur5_bringup.launch.
 
