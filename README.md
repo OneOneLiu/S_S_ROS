@@ -39,7 +39,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 
 ### 2.3. 文件夹说明
 
-依据前一节说的编程习惯, 本仓库是包含多个`ROS packages`的, 而不是把这整个仓库只作为一个`ROS`的`package`, (我以前是这么搞的, 你们不要这么做, 这是个很坏的习惯). 在实际测试的时候, 我们使用`Docker`, 我会通过`Docker` 的[`volume`](https://docs.docker.com/storage/volumes/)功能把每个子文件夹都映射到`container`容器环境中的`/catkin_ws/src/`目录下. 你可以在这个[`Docker`启动文件](Docker/noetic.bash)里面找到相关命令.
+依据前一节说的编程习惯, 本仓库是包含多个`ROS packages`的, 而不是把这整个仓库只作为一个`ROS`的`package`, (我以前是这么搞的, 你们不要这么做, 这是个很坏的习惯). 在实际测试的时候, 我们使用`Docker`, 我会把这些`packages`的子文件夹都放在`src`目录下, 然后通过`Docker` 的[`volume`](https://docs.docker.com/storage/volumes/)功能把`src`目录映射到`container`容器环境中的`/catkin_ws/src/`目录. 你可以在这个[`Docker`启动文件](Docker/noetic.bash)里面找到相关命令.
 
 所以这个仓库的文件夹结构大致会是下面的样子:
 ```bash{.line-numbers}
@@ -54,17 +54,18 @@ s_s_ros/
 │       ├── 1.Realsense_camera.md
 │       ├── 2.UR_robot.md
 │       └── 3.Robotiq_gripper.md
-├── pkg_camera
-├── pkg_grasp
-├── pkg_gripper
-├── pkg_robot
 ├── README_en.md
 ├── README.md
+└── src
+    ├── pkg_camera
+    ├── pkg_grasp_main
+    ├── pkg_gripper
+    └── pkg_robot
 ```
 其中:
 - `Docker` 目录下放的是`Docker`环境编译,启动的文件以及相关说明
 - `docs`目录下放的就是各种说明文档
-- 以`pkg_`开头的就是给各个功能添加的`package`, 把`pkg_`作为前缀看着很奇怪, 但是可以让他们看起来在一起, 就这样吧.
+- `src`目录下以`pkg_`开头的就是给各个功能添加的`package`, 把`pkg_`作为前缀看着很奇怪, 但是可以让他们看起来在一起, 就这样吧.
 
 当`Docker container`启动之后, 首次`catkin_make`之前, 在虚拟环境中看到的目录大致会是这样:
 ```bash{.line-numbers}
