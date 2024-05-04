@@ -1,1 +1,11 @@
-https://wiki.ros.org/ROS/Tutorials/UnderstandingServicesParams
+# ROS中的服务和参数
+
+所有的相关资料均可在下面链接的 ROS wiki上面查到：
+- https://wiki.ros.org/ROS/Tutorials/UnderstandingServicesParams
+
+我这里解释一个问题：
+
+1. 为什么要用ros params server， 直接在launch里面启动节点不也是可以设置节点参数吗？
+
+   - 在启动某个节点时在launch文件中设置的参数是固定的，在启动之后无法再改变，而ROS1的参数服务器允许不同的节点把**节点参数，节点配置信息**存储到一个公共的中央服务器上，允许动态的修改。
+   - 参数服务器帮助实现更加灵活的行为，我们不需要在编译节点代码的时候考虑参数的配置问题，可以在使用时通过参数服务器给节点设置不同参数来实现不同的功能
