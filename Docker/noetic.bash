@@ -1,5 +1,11 @@
 xhost local:root
 XAUTH=/tmp/.docker.xauth
+
+## For fix issues in ssh, run the following manually in the host before starting the container
+# sudo rm /tmp/.docker.xauth
+# touch /tmp/.docker.xauth
+# sudo xauth -f /tmp/.docker.xauth add $(xauth list $DISPLAY)
+
 docker run --rm -it \
     --name=ros_noetic_container \
     --env="DISPLAY=$DISPLAY" \
