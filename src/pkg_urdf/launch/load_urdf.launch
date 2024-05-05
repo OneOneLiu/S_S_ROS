@@ -1,0 +1,8 @@
+<launch>
+  <!-- Load the URDF into the parameter server -->
+  <param name="robot_description"
+         textfile="$(find pkg_urdf)/urdf/example_link.urdf" />
+
+  <!-- Launch RViz -->
+  <node name="rviz" pkg="rviz" type="rviz" required="true"/>
+</launch>
