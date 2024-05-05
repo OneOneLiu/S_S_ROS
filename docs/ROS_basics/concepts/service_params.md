@@ -48,4 +48,4 @@ NODES
 所以，如果想要启动`moveit`节点对机器人进行运动规划，应当同时或者先启动添加描述文件的这个launch file.
 
 ## 一个备注
-在launch file中, 有时候会看到有些时候参数设置用 `param` 标签, 有时候用 `rosparam` 标签, 比如[这个文件](https://github.com/ros-industrial/universal_robot/blob/noetic-devel/ur5_moveit_config/launch/planning_context.launch). 他们的[区别主要在于](https://robotics.stackexchange.com/questions/41941/when-to-use-param-and-rosparam-on-launch-file#:~:text=I%20believe%20that%20the%20main,is%20an%20entire%20URDF%20file.)一个用于加载单个参数到服务器, 一个用于跟yaml文件配合, 从文件加载很多参数到参数服务器.
+在`launch file`中, 有时候会看到参数设置用 `param` 标签, 有时候用 `rosparam` 标签, 比如[这个文件](https://github.com/ros-industrial/universal_robot/blob/noetic-devel/ur5_moveit_config/launch/planning_context.launch). 他们的[区别主要在于](https://robotics.stackexchange.com/questions/41941/when-to-use-param-and-rosparam-on-launch-file#:~:text=I%20believe%20that%20the%20main,is%20an%20entire%20URDF%20file.)一个用于加载单个参数到服务器, 一个用于跟yaml文件配合, 从文件加载很多参数到参数服务器.
