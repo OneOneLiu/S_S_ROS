@@ -20,6 +20,8 @@ docker run --rm -it \
     --volume="/tmp/.docker.xauth:/tmp/.docker.xauth:rw" \
     --net=host \
     --privileged \
+    --runtime=nvidia \
+    --gpus all \
     ros_noetic_image \
     bash
 
