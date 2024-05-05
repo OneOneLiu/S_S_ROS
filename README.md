@@ -105,7 +105,13 @@ catkin_ws/
   - [ ] add notes for point cloud visualization
 - [ ] Docker
   - [ ] installation notes
+- [ ] Robots
+  - [ ] add notes for `ros_control`
+  - [ ] add notes for urdf and xacro
+  - [ ] generate urdf for multiple robots
 - [ ] Trouble shooting
   - [ ] add trouble shooting for GUI in docker and ssh
   - [ ] add trouble shooting for roscore issue when using from ssh
   - [ ] add trouble shooting for qt lib when using from ssh
+- [ ] ROS basics
+  - [ ] add notes for tf
