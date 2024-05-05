@@ -1,8 +1,9 @@
 <launch>
+  <arg name="urdf_file" default="example_link.urdf"/>
+
   <!-- Load the URDF into the parameter server -->
-  <param name="robot_description"
-         textfile="$(find pkg_urdf)/urdf/example_link.urdf" />
+  <param name="robot_description" textfile="$(find pkg_urdf)/urdf/$(arg urdf_file)" />
 
   <!-- Launch RViz -->
-  <node name="rviz" pkg="rviz" type="rviz" required="true"/>
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pkg_urdf)/cfg/display_urdf.rviz" required="true"/>
 </launch>

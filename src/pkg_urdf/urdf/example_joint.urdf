@@ -1,5 +1,7 @@
 <robot name="robot_link">
 
+<link name="world"/>
+
 <link name="link1">
    <inertial>
      <origin xyz="0 0 0.5" rpy="0 0 0"/>
@@ -24,5 +26,11 @@
      </geometry>
    </collision>
  </link>
+
+<joint name="world_to_link1" type="fixed">
+  <parent link="world"/>
+  <child link="link1"/>
+  <origin xyz="0 0 0.5" rpy="0 0 0"/>
+</joint>
 
 </robot>
