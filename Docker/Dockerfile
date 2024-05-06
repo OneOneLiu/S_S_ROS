@@ -24,7 +24,10 @@ RUN apt-get install -y ros-$ROS_DISTRO-realsense2-camera && \
 RUN mkdir -p /catkin_ws/src && \
     cd /catkin_ws/src && \
     git clone -b noetic-devel https://github.com/ros-industrial/universal_robot.git && \
-    git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git
+    git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git && \
+    apt-get install ros-${ROS_DISTRO}-moveit-planners-chomp && \
+    apt-get install ros-${ROS_DISTRO}-pilz-industrial-motion-planner && \
+    apt-get install ros-${ROS_DISTRO}-moveit-ros-control-interface
 
 # Use rosdep to install all dependencies according to the package.xml files in all src folders
 # And compile the workspace
