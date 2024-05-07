@@ -25,16 +25,21 @@ RUN mkdir -p /catkin_ws/src && \
     cd /catkin_ws/src && \
     git clone -b noetic-devel https://github.com/ros-industrial/universal_robot.git && \
     git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git && \
-    apt-get install ros-${ROS_DISTRO}-moveit-planners-chomp && \
-    apt-get install ros-${ROS_DISTRO}-pilz-industrial-motion-planner && \
-    apt-get install ros-${ROS_DISTRO}-moveit-ros-control-interface
+    apt-get install -y ros-${ROS_DISTRO}-moveit-planners-chomp && \
+    apt-get install -y ros-${ROS_DISTRO}-pilz-industrial-motion-planner && \
+    apt-get install -y ros-${ROS_DISTRO}-moveit-ros-control-interface
+
+# Robotiq gripper
+RUN cd /catkin_ws/src && \
+    git clone https://github.com/TAMS-Group/robotiq.git && \
+    apt-get install -y ros-noetic-soem && \
+    apt-get install ros-noetic-socketcan-interface
 
 # Use rosdep to install all dependencies according to the package.xml files in all src folders
 # And compile the workspace
 RUN cd /catkin_ws && \
     rosdep install --from-paths src --ignore-src -r -y && \
     /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make'
-
 
 # Automatically source
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
