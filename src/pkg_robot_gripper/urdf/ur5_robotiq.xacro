@@ -5,11 +5,12 @@
     <xacro:include filename="$(find ur_description)/urdf/ur5.xacro" />
 
     <!-- Include Robotiq 2F-85 xacro -->
-    <xacro:include filename="$(find robotiq_2f_85_gripper_visualization)/urdf/robotiq_arg2f_85_model.xacro" />
+    <xacro:include filename="$(find pkg_gripper)/urdf/robotiq_arg2f_85_model_macro.xacro" />
+    <xacro:robotiq_arg2f_85 prefix=""/>
 
-    <joint name="wrist_to_gripper" type="fixed">
+    <joint name="tool_to_gripper" type="fixed">
         <origin xyz="0 0 0" rpy="0 0 0"/>
-        <parent link="wrist_3_link"/>  <!-- UR5的末端链接 -->
+        <parent link="tool0"/>  <!-- UR5的末端链接 -->
         <child link="robotiq_arg2f_base_link"/>  <!-- Robotiq的根链接 -->
     </joint>
 
