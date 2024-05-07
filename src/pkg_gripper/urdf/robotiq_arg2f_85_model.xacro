@@ -2,4 +2,10 @@
 <robot name="robotiq_arg2f_85_model" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find pkg_gripper)/urdf/robotiq_arg2f_85_model_macro.xacro" />
   <xacro:robotiq_arg2f_85 prefix=""/>
+  <link name="world"/>
+  <joint name="joint_name" type="fixed">
+    <origin xyz="0 0 0" rpy="0 0 0"/>
+    <parent link="world"/>
+    <child link="robotiq_arg2f_base_link"/>
+  </joint>
 </robot>
