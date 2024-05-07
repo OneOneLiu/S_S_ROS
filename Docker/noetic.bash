@@ -16,6 +16,7 @@ docker run --rm -it \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_gripper:/catkin_ws/src/pkg_gripper" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_grasp_main:/catkin_ws/src/pkg_grasp_main" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_urdf:/catkin_ws/src/pkg_urdf" \
+    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_robot_gripper:/catkin_ws/src/pkg_robot_gripper" \
     --volume="/dev/bus/usb:/dev/bus/usb" \
     --volume="/tmp/.docker.xauth:/tmp/.docker.xauth:rw" \
     --net=host \
