@@ -62,7 +62,7 @@
     <transmission name="shoulder_pan_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="shoulder_pan_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="shoulder_pan_motor">
             <mechanicalReduction>1</mechanicalReduction>
@@ -72,7 +72,7 @@
     <transmission name="shoulder_lift_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="shoulder_lift_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="shoulder_lift_motor">
             <mechanicalReduction>1</mechanicalReduction>
@@ -82,7 +82,7 @@
     <transmission name="elbow_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="elbow_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="elbow_motor">
             <mechanicalReduction>1</mechanicalReduction>
@@ -92,7 +92,7 @@
     <transmission name="wrist_1_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="wrist_1_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="wrist_1_motor">
             <mechanicalReduction>1</mechanicalReduction>
@@ -102,7 +102,7 @@
     <transmission name="wrist_2_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="wrist_2_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="wrist_2_motor">
             <mechanicalReduction>1</mechanicalReduction>
@@ -112,7 +112,7 @@
     <transmission name="wrist_3_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="wrist_3_joint">
-            <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
         </joint>
         <actuator name="wrist_3_motor">
             <mechanicalReduction>1</mechanicalReduction>
@@ -397,7 +397,7 @@
         <axis xyz="0 0 1" />
         <origin rpy="0.0 0.0 0.0" xyz="0.05490451627 -0.03060114443 0.0" />
         <limit effort="1000" lower="-3.14" upper="3.14" velocity="100.0" />
-        <mimic joint="robotiq_85_left_knuckle_joint" />
+        <!-- <mimic joint="robotiq_85_left_knuckle_joint" /> -->
     </joint>
     <link name="robotiq_85_left_knuckle_link">
         <visual>
@@ -577,61 +577,22 @@
             <inertia ixx="0.000002" ixy="0.000000" ixz="0.000000" iyx="0.000000" iyy="0.000005" iyz="0.000000" izx="0.000000" izy="0.000000" izz="0.000006" />
         </inertial>
     </link>
-    <!-- Improve grasping physics -->
-    <gazebo reference="robotiq_85_left_finger_tip_link">
-        <kp>1000000.0</kp>
-        <kd>1.0</kd>
-        <mu1>1.0</mu1>
-        <mu2>1.0</mu2>
-        <minDepth>0.001</minDepth>
-        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
-            <robotNamespace>/</robotNamespace>
-        </plugin>
-    </gazebo>
-    <gazebo reference="robotiq_85_right_finger_tip_link">
-        <kp>1000000.0</kp>
-        <kd>1.0</kd>
-        <mu1>1.0</mu1>
-        <mu2>1.0</mu2>
-        <minDepth>0.001</minDepth>
-    </gazebo>
     <transmission name="robotiq_85_left_knuckle_trans">
         <type>transmission_interface/SimpleTransmission</type>
         <joint name="robotiq_85_left_knuckle_joint">
-            <hardwareInterface>PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
             <!-- <hardwareInterface>EffortJointInterface</hardwareInterface> -->
         </joint>
         <actuator name="robotiq_85_left_knuckle_motor">
             <mechanicalReduction>1</mechanicalReduction>
-            <hardwareInterface>PositionJointInterface</hardwareInterface>
+            <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
             <!-- <hardwareInterface>EfforJointInterface</hardwareInterface> -->
         </actuator>
     </transmission>
     <!-- Mimic joints -->
     <gazebo>
-        <plugin filename="libgazebo_mimic_joint_plugin.so" name="mimic_robotiq_85_1">
-            <joint>robotiq_85_left_knuckle_joint</joint>
-            <mimicJoint>robotiq_85_right_knuckle_joint</mimicJoint>
-        </plugin>
-        <plugin filename="libgazebo_mimic_joint_plugin.so" name="mimic_robotiq_85_2">
-            <joint>robotiq_85_left_knuckle_joint</joint>
-            <mimicJoint>robotiq_85_left_inner_knuckle_joint</mimicJoint>
-        </plugin>
-        <plugin filename="libgazebo_mimic_joint_plugin.so" name="mimic_robotiq_85_3">
-            <joint>robotiq_85_left_knuckle_joint</joint>
-            <mimicJoint>robotiq_85_right_inner_knuckle_joint</mimicJoint>
-        </plugin>
-        <plugin filename="libgazebo_mimic_joint_plugin.so" name="mimic_robotiq_85_4">
-            <joint>robotiq_85_left_knuckle_joint</joint>
-            <mimicJoint>robotiq_85_left_finger_tip_joint</mimicJoint>
-            <multiplier>-1.0</multiplier>
-            <offset>0.0</offset>
-        </plugin>
-        <plugin filename="libgazebo_mimic_joint_plugin.so" name="mimic_robotiq_85_5">
-            <joint>robotiq_85_left_knuckle_joint</joint>
-            <mimicJoint>robotiq_85_right_finger_tip_joint</mimicJoint>
-            <multiplier>-1.0</multiplier>
-            <offset>0.0</offset>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
         </plugin>
     </gazebo>
     <transmission name="trans_robotiq_85_right_knuckle_joint">
