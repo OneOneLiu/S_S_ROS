@@ -1,0 +1,11 @@
+moveit_setup_assistant_config:
+  URDF:
+    package: pkg_robot_gripper
+    relative_path: urdf/ur5_robotiq_description.xacro
+    xacro_args: ""
+  SRDF:
+    relative_path: config/ur5_with_robotiq_2f_85.srdf
+  CONFIG:
+    author_name: Daohui Liu
+    author_email: daohui.liu@mail.utoronto.ca
+    generated_timestamp: 1715127127
