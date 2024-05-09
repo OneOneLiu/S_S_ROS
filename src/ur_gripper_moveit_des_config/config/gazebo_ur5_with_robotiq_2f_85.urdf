@@ -588,6 +588,11 @@
             <robotNamespace>/</robotNamespace>
         </plugin>
     </gazebo>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
     <gazebo reference="robotiq_85_right_finger_tip_link">
         <kp>1000000.0</kp>
         <kd>1.0</kd>
