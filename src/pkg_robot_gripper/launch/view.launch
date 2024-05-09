@@ -4,5 +4,5 @@
   <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
   <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pkg_robot_gripper)/cfg/view.rviz" required="true" />
 
-  <param name="robot_description" command="$(find xacro)/xacro '$(find pkg_robot_gripper)/urdf/ur5_robotiq.xacro'"/>
+  <param name="robot_description" command="$(find xacro)/xacro '$(find pkg_robot_gripper)/urdf/ur5_robotiq_description.xacro'"/>
 </launch>
