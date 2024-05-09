@@ -37,7 +37,8 @@ RUN cd /catkin_ws/src && \
     git clone https://github.com/TAMS-Group/robotiq.git && \
     apt-get install -y ros-noetic-soem && \
     apt-get install ros-noetic-socketcan-interface && \
-    apt install ros-noetic-rqt-controller-manager
+    apt install ros-noetic-rqt-controller-manager && \
+    apt-get install python3-tk
 
 # Use rosdep to install all dependencies according to the package.xml files in all src folders
 # And compile the workspace
