@@ -17,8 +17,7 @@ docker run --rm -it \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_grasp_main:/catkin_ws/src/pkg_grasp_main" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_urdf:/catkin_ws/src/pkg_urdf" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_robot_gripper:/catkin_ws/src/pkg_robot_gripper" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/ur_gripper_moveit_config:/catkin_ws/src/ur_gripper_moveit_config" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/ur_gripper_moveit_des_config:/catkin_ws/src/ur_gripper_moveit_des_config" \
+    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_ur_gripper_moveit:/catkin_ws/src/pkg_ur_gripper_moveit" \
     --volume="/dev/bus/usb:/dev/bus/usb" \
     --volume="/tmp/.docker.xauth:/tmp/.docker.xauth:rw" \
     --net=host \
