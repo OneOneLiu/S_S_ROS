@@ -146,7 +146,7 @@
       <child link="${prefix}robotiq_85_left_inner_knuckle_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.06142 0.0127 0" rpy="${pi} 0.0 0.0" />
-      <limit lower="0" upper="0.8025" velocity="100.0" effort="0.1"/>
+      <limit lower="0" upper="0.8757" velocity="100.0" effort="0.1"/>
       <mimic joint="${prefix}robotiq_85_left_knuckle_joint" offset="0"/>
     </joint>
 
@@ -155,7 +155,7 @@
       <child link="${prefix}robotiq_85_right_inner_knuckle_link"/>
       <axis xyz="0 0 1"/>
       <origin xyz="0.06142 -0.0127 0" rpy="0 0 0"/>
-      <limit lower="0" upper="0.8025" velocity="100.0" effort="0.1"/>
+      <limit lower="0" upper="0.8757" velocity="100.0" effort="0.1"/>
       <mimic joint="${prefix}robotiq_85_left_knuckle_joint" offset="0"/>
     </joint>
 
