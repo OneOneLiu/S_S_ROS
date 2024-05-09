@@ -2,26 +2,27 @@
 
 <launch>
     <!-- Gazebo options -->
-    <arg name="gazebo_gui" default="true" doc="Start Gazebo GUI"/>
+    <!-- Note: if you set paused to be true, remember to unpause the simulation in the gui to start the simulation-->
     <arg name="paused" default="false" doc="Start Gazebo paused"/>
-
-    <arg name="gui" default="True" />
-    <!-- <param name="use_gui" value="$(arg gui)"/> -->
-
-
     <param name="robot_description" command="$(find xacro)/xacro $(find pkg_gripper)/urdf/robotiq_description.xacro" />
+    <!-- Start Rviz -->
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find pkg_gripper)/config/gripper.rviz" required="true" />
 
-    <node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui" />
-    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
-
-    <node name="rviz" pkg="rviz" type="rviz" required="true" />
-
-    <!-- Unpause the simulation after loading the robot model -->
-    <arg name="unpause" value="$(eval '' if arg('paused') else '-unpause')" />
     <!-- Start Gazebo paused to allow the controllers to pickup the initial pose -->
     <include file="$(find gazebo_ros)/launch/empty_world.launch" pass_all_args="true">
-        <arg name="paused" value="true"/>
+        <arg name="paused" value="$(arg paused)"/>
     </include>
-    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot $(arg unpause)"
+    <!-- Spawn the urdf model -->
+    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot"
     respawn="false" output="screen" />
+
+    <!-- Add configuration file for the Gazebo publisher controller -->
+    <rosparam file="$(find pkg_gripper)/config/gazebo_controllers.yaml" />
+    <!-- Add configuration file for the ros joint controller -->
+    <rosparam file="$(find pkg_gripper)/config/ros_controllers.yaml" />
+    <!-- Spawn the Gazebo ROS controllers -->
+    <node name="gazebo_controller_spawner" pkg="controller_manager" type="spawner" respawn="false" output="screen" args="joint_state_controller gripper_controller" />
+
+    <!-- Publish tf -->
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 </launch>

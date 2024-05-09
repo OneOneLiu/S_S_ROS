@@ -7,6 +7,11 @@
     <xacro:include filename="$(find pkg_gripper)/urdf/robotiq_85_gripper.urdf.xacro" />
 
     <xacro:robotiq_85_gripper prefix="" parent="world" >
-    <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>
-    </xacro:robotiq_85_gripper> 
+    <origin xyz="0 0 0.004" rpy="0 ${-pi/2} ${pi}"/>>>
+    </xacro:robotiq_85_gripper>
+    <gazebo>
+        <plugin name="gazebo_ros_control" filename="libgazebo_ros_control.so">
+            <robotNamespace>/</robotNamespace>
+        </plugin>
+    </gazebo>
 </robot>
