@@ -23,10 +23,12 @@ sudo apt-get install -y nvidia-container-toolkit
 
 ```bash{.line-numbers}
 ...
+--env="NVIDIA_DRIVER_CAPABILITIES=all" \
 --runtime=nvidia \
 --gpus all
 ...
 ```
 
 **References:**
-> http://wiki.ros.org/docker/Tutorials/Hardware%20Acceleration
+> - http://wiki.ros.org/docker/Tutorials/Hardware%20Acceleration
+> - https://github.com/NVIDIA/nvidia-container-toolkit/issues/393
