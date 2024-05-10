@@ -27,7 +27,8 @@ RUN mkdir -p /catkin_ws/src && \
     git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git && \
     apt-get install -y ros-${ROS_DISTRO}-moveit-planners-chomp && \
     apt-get install -y ros-${ROS_DISTRO}-pilz-industrial-motion-planner && \
-    apt-get install -y ros-${ROS_DISTRO}-moveit-ros-control-interface
+    apt-get install -y ros-${ROS_DISTRO}-moveit-ros-control-interface && \
+    apt-get install -y ros-${ROS_DISTRO}-moveit-commander
 
 # Robotiq gripper (gripper model, gazebo ros control plugin and usb communication interfaces)
 RUN cd /catkin_ws/src && \
@@ -45,6 +46,11 @@ RUN cd /catkin_ws/src && \
 RUN cd /catkin_ws && \
     rosdep install --from-paths src --ignore-src -r -y && \
     /bin/bash -c '. /opt/ros/noetic/setup.bash; catkin_make'
+
+# For monitoring keyboard inputs
+RUN apt-get install -y kbd && \
+    pip install keyboard && \
+    pip install pynput
 
 # Automatically source
 RUN echo "source /opt/ros/noetic/setup.bash" >> ~/.bashrc && \
