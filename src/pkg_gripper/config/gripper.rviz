@@ -116,11 +116,28 @@ Visualization Manager:
       Update Interval: 0
       Value: true
       Visual Enabled: true
+    - Class: rviz/TF
+      Enabled: false
+      Filter (blacklist): ""
+      Filter (whitelist): ""
+      Frame Timeout: 15
+      Frames:
+        All Enabled: true
+      Marker Alpha: 1
+      Marker Scale: 1
+      Name: TF
+      Show Arrows: true
+      Show Axes: true
+      Show Names: true
+      Tree:
+        {}
+      Update Interval: 0
+      Value: false
   Enabled: true
   Global Options:
     Background Color: 48; 48; 48
     Default Light: true
-    Fixed Frame: robotiq_85_base_link
+    Fixed Frame: world
     Frame Rate: 30
   Name: root
   Tools:
@@ -144,7 +161,7 @@ Visualization Manager:
   Views:
     Current:
       Class: rviz/Orbit
-      Distance: 0.5750702619552612
+      Distance: 0.9277857542037964
       Enable Stereo Rendering:
         Stereo Eye Separation: 0.05999999865889549
         Stereo Focal Distance: 1
@@ -152,17 +169,17 @@ Visualization Manager:
         Value: false
       Field of View: 0.7853981852531433
       Focal Point:
-        X: 0.09395837783813477
-        Y: -0.022771155461668968
-        Z: -0.05033698305487633
+        X: -0.00777165312319994
+        Y: -0.04146648943424225
+        Z: -0.06244713440537453
       Focal Shape Fixed Size: true
       Focal Shape Size: 0.05000000074505806
       Invert Z Axis: false
       Name: Current View
       Near Clip Distance: 0.009999999776482582
-      Pitch: 0.6953980922698975
+      Pitch: 0.5153983235359192
       Target Frame: <Fixed Frame>
-      Yaw: 1.8503973484039307
+      Yaw: 2.3953983783721924
     Saved: ~
 Window Geometry:
   Displays:
