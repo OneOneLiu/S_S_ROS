@@ -29,11 +29,12 @@ RUN mkdir -p /catkin_ws/src && \
     apt-get install -y ros-${ROS_DISTRO}-pilz-industrial-motion-planner && \
     apt-get install -y ros-${ROS_DISTRO}-moveit-ros-control-interface
 
-# Robotiq gripper
+# Robotiq gripper (gripper model, gazebo ros control plugin and usb communication interfaces)
 RUN cd /catkin_ws/src && \
     git clone https://github.com/filesmuggler/robotiq.git && \
     cp -r robotiq/robotiq_description/  .&& \
     rm -rf robotiq && \
+    git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins && \
     apt-get install -y ros-noetic-soem && \
     apt-get install ros-noetic-socketcan-interface && \
     apt install ros-noetic-rqt-controller-manager && \
