@@ -34,7 +34,6 @@ RUN cd /catkin_ws/src && \
     git clone https://github.com/filesmuggler/robotiq.git && \
     cp -r robotiq/robotiq_description/  .&& \
     rm -rf robotiq && \
-    git clone https://github.com/TAMS-Group/robotiq.git && \
     apt-get install -y ros-noetic-soem && \
     apt-get install ros-noetic-socketcan-interface && \
     apt install ros-noetic-rqt-controller-manager && \
