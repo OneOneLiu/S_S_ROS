@@ -16,11 +16,8 @@
   <!-- Set the robot urdf on the parameter server -->
   <param name="robot_description" textfile="$(find pkg_ur_gripper_moveit)/config/gazebo_ur5_with_robotiq_2f_85.urdf" />
 
-  <!-- Unpause the simulation after loading the robot model -->
-  <arg name="unpause" value="$(eval '' if arg('paused') else '-unpause')" />
-
   <!-- Spawn the robot in Gazebo -->
-  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model ur5_with_robotiq_2f_85 $(arg unpause) $(arg initial_joint_positions)"
+  <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model ur5_with_robotiq_2f_85 -unpause $(arg initial_joint_positions)"
     respawn="false" output="screen" />
 
   <!-- Load the controller parameters onto the parameter server -->
