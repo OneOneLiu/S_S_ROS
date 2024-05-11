@@ -1,0 +1,18 @@
+<launch>
+    <arg name="paused" default="true" doc="Start Gazebo paused"/>
+    <param name="robot_description" command="$(find xacro)/xacro --inorder '$(find pkg_virtual_camera)/urdf/test_d435_camera.urdf.xacro'" />
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
+    <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher" />
+
+    <arg name="gui" default="True" />
+    <param name="use_gui" value="$(arg gui)" />
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find realsense2_description)/rviz/urdf.rviz" required="true" />
+
+    <!-- Start Gazebo paused to allow the controllers to pickup the initial pose -->
+    <include file="$(find gazebo_ros)/launch/empty_world.launch" pass_all_args="true">
+        <arg name="paused" value="$(arg paused)"/>
+    </include>
+    <!-- Spawn the urdf model -->
+    <node name="spawn_gazebo_model" pkg="gazebo_ros" type="spawn_model" args="-urdf -param robot_description -model robot -unpause"
+    respawn="false" output="screen" />
+</launch>

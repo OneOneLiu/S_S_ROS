@@ -14,17 +14,24 @@ RUN apt-get update && \
     apt-get install -y git && \
     apt-get install -y python3-pip && \
     apt-get install -y xauth x11-apps # This is for GUI testing
+    
 
-# Intel realsense camera
+# Intel realsense camera and virtual camera plugin
 RUN apt-get install -y ros-$ROS_DISTRO-realsense2-camera && \
     apt-get install -y libcanberra-gtk-module libcanberra-gtk3-module && \
-    pip3 install pyrealsense2
+    pip3 install pyrealsense2 && \
+    mkdir -p /catkin_ws/src && \
+    cd /catkin_ws/src && \
+    git clone -b upstream https://github.com/pal-robotics-forks/realsense.git && \
+    cp -r realsense/realsense2_description/ . && \
+    rm -rf realsense && \
+    git clone https://github.com/pal-robotics/realsense_gazebo_plugin
 
 # Dependencies layer # Ur_driver
-RUN mkdir -p /catkin_ws/src && \
-    cd /catkin_ws/src && \
+RUN cd /catkin_ws/src && \
     git clone -b noetic-devel https://github.com/ros-industrial/universal_robot.git && \
     git clone https://github.com/UniversalRobots/Universal_Robots_ROS_Driver.git && \
+    apt-get update && \
     apt-get install -y ros-${ROS_DISTRO}-moveit-planners-chomp && \
     apt-get install -y ros-${ROS_DISTRO}-pilz-industrial-motion-planner && \
     apt-get install -y ros-${ROS_DISTRO}-moveit-ros-control-interface && \
