@@ -22,7 +22,7 @@ class Planning_scene(object):
         ## Instantiate a `RobotCommander`_ object. Provides information such as the robot's kinematic model and the robot's current joint states
         self.scene = moveit_commander.PlanningSceneInterface()
 
-        self.add_box_objects('table', (0, 0, -0.04), (1.5, 1.5, 0.02))
+        self.add_box_objects('table', (0, 0, 0), (1.5, 1.5, 0.02))
 
     def add_box_objects(self, box_name, pose, box_size):
         box_pose = geometry_msgs.msg.PoseStamped()
