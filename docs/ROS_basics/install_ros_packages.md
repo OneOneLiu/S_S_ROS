@@ -38,5 +38,7 @@ source devel/setup.bash
 
 3. 有时编译会出错, 提示缺少依赖, 安装对应软件包的依赖即可.
 
+> 使用 `rosdep install --from-paths src --ignore-src -r -y` 命令可以根据当前选定的源文件目录自动安装所需要的 ROS 依赖, 本仓库的 [`dockerfile`](../../docker/Dockerfile) 中也使用了.
+
 ## 3. 使用
 通过上面的方式安装好包, 并编译更新环境之后, 就可以通过对应提供的`launch file`, 或者`rosrun`命令启动需要的节点, 使用功能.

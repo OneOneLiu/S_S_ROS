@@ -10,10 +10,10 @@ bash build.bash
 ```
 
 > **Note:**
-> - You can change the name to whatever you like, just remember to update the new name in the [startup file](noetic.bash).
+> - You can change the name to whatever you like, just remember to update the new name in the [startup file](run_container.bash).
 
 ## Start Docker container
 In current path, run the following command to start the docker container with the name `ros_noetic_container`:
 ```bash
-bash noetic.bash
+bash run_container.bash
 ```
