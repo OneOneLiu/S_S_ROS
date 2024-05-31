@@ -71,7 +71,7 @@ s_s_ros/
 - `docs`目录下放的是各种说明文档
 - `src`目录下是空的或者只有少量几个以`pkg_`开头的就是尚在开发的功能`package`, 完成后我会给他们单独创建一个仓库并把他们移除 
 
-当`Docker container`启动之后, 首次`catkin_make`之前, 在虚拟环境中看到的目录大致会是这样:
+当`Docker container`启动之后, 在虚拟环境中看到的目录大致会是这样:
 ```bash{.line-numbers}
 catkin_ws/
 └── src
