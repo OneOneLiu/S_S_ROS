@@ -39,15 +39,20 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 
 ### 2.3. 文件夹说明
 
-依据前一节说的编程习惯, 本仓库是包含多个`ROS packages`的, 而不是把这整个仓库只作为一个`ROS`的`package`, (我以前是这么搞的, 你们不要这么做, 这是个很坏的习惯). 在实际测试的时候, 我们使用`Docker`, 我会把这些`packages`的子文件夹都放在`src`目录下, 然后通过`Docker` 的[`volume`](https://docs.docker.com/storage/volumes/)功能把`src`目录映射到`container`容器环境中的`/catkin_ws/src/`目录. 你可以在这个[`Docker`启动文件](Docker/noetic.bash)里面找到相关命令.
+依据前一节说的编程习惯, 本仓库是包含多个`ROS packages`的, 而不是把整个仓库用作一个单一的`ROS package`, (我以前是这么搞的, 你们不要这么做, 这是个很坏的习惯). 
 
-所以这个仓库的文件夹结构大致会是下面的样子:
+我为每个单独的功能包都创建了单独的 `git repository`.
+
+在实际测试的时候, 我们使用`Docker`, 我会把这些`packages`的 `repository` 都 `clone` 到 `src`目录下, 这样在启动`container`容器环境时他们就会存在的`/catkin_ws/src/`目录.
+
+所以本仓库的文件夹结构大致会是下面的样子:
 ```bash{.line-numbers}
 s_s_ros/
-├── Docker
+├── docker
 │   ├── build.bash
 │   ├── Dockerfile
-│   ├── noetic.bash
+│   ├── run_container.bash
+    ├── entrypoint.sh
 │   └── README.md
 ├── docs
 │   └── Hardware
@@ -57,28 +62,52 @@ s_s_ros/
 ├── README_en.md
 ├── README.md
 └── src
-    ├── pkg_camera
     ├── pkg_grasp_main
-    ├── pkg_gripper
-    └── pkg_robot
+    ├── pkg_virtual_cameara
+    └── pkg_urdf
 ```
 其中:
-- `Docker` 目录下放的是`Docker`环境编译,启动的文件以及相关说明
-- `docs`目录下放的就是各种说明文档
-- `src`目录下以`pkg_`开头的就是给各个功能添加的`package`, 把`pkg_`作为前缀看着很奇怪, 但是可以让他们看起来在一起, 就这样吧.
+- `docker` 目录下放的是`Docker`环境编译,启动的文件以及相关说明
+- `docs`目录下放的是各种说明文档
+- `src`目录下是空的或者只有少量几个以`pkg_`开头的就是尚在开发的功能`package`, 完成后我会给他们单独创建一个仓库并把他们移除 
 
 当`Docker container`启动之后, 首次`catkin_make`之前, 在虚拟环境中看到的目录大致会是这样:
 ```bash{.line-numbers}
 catkin_ws/
 └── src
-    ├── pkg_camera
-    ├── pkg_grasp_main
-    ├── pkg_gripper
-    └── pkg_robot
+  ├── Universal_Robots_ROS_Driver
+  ├── pkg_grasp_main
+  ├── pkg_urdf
+  ├── pkg_virtual_camera
+  ├── realsense2_description
+  ├── realsense_camera
+  ├── realsense_gazebo_plugin
+  ├── roboticsgroup_gazebo_plugins
+  ├── robotiq
+  ├── robotiq_description
+  ├── robotiq_gripper
+  ├── universal_robot
+  ├── ur5_gripper_moveit
+  ├── ur5_robot
+  └── ur5_robot_gripper
 ```
+会比之前多了一些仓库, 因为其中包含了我们在构建 `docker image` 时`clone`进来的仓库.
+
+> :memo: 
+> 这里包含的不仅是我的自定义仓库, 还有一些比如机器人, 夹爪相机的官方库. 你可以在 `dockerfile` 中的备注中找到哪些是我的自定义仓库. 如下:
+```bash{.line-numbers}
+# Clone my custimized repositories
+RUN cd /catkin_ws/src && \
+    git clone https://github.com/OneOneLiu/realsense_camera.git && \
+    git clone https://github.com/OneOneLiu/robotiq_gripper.git && \
+    git clone https://github.com/OneOneLiu/ur5_robot.git && \
+    git clone https://github.com/OneOneLiu/ur5_gripper_moveit.git && \
+    git clone https://github.com/OneOneLiu/ur5_robot_gripper.git
+```
+> 在启动`container`时, 会通过[`entrypoint.sh`](docker/entrypoint.sh)文件来自动同步这些自定义仓库.
 
 ### 2.4. 使用说明
-本仓库是模块化的入门教程, 每个`pkg_`开头的文件都是一个单独的功能包(`package`), 比如使用相机, 使用夹爪等. 每个`package`里都有单独的源代码以及测试文件, 可以单独参考使用.
+本仓库是模块化的入门教程, 每个在 `dockerfile` 中 `clone` 进来的自定义仓库都是一个单独的功能包(`package`), 比如使用相机, 使用夹爪等. 每个`package`里都有单独的源代码以及测试文件, 可以单独参考使用.
 
 ## 3. 常用硬件的使用
 
@@ -109,8 +138,9 @@ catkin_ws/
   - [ ] add notes for `ros_control`
   - [ ] add notes for urdf and xacro
   - [ ] generate urdf for multiple robots
+  - [ ] add notes for control multiple robots using `ROS namespace` feature
 - [ ] Trouble shooting
-  - [ ] add trouble shooting for GUI in docker and ssh
+  - [x] add trouble shooting for GUI in docker and ssh
   - [ ] add trouble shooting for roscore issue when using from ssh
   - [ ] add trouble shooting for qt lib when using from ssh
 - [ ] ROS basics

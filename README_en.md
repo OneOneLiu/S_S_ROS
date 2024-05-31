@@ -39,9 +39,13 @@ This repository provides a simple Docker startup command, which is located in th
 
 ### 2.3. Folder Descriptions
 
-Following the programming practices mentioned earlier, this repository contains multiple `ROS packages`, rather than treating the entire repository as a single `ROS` package (which was a bad practice that I used to follow, which you should avoid). I create a separate folder for each of these packages under the `src` folder. Then, the `src` folder is mapped to the `/catkin_ws/src/` directory in the container using the `Docker` [`volume`](https://docs.docker.com/storage/volumes/) feature. You can check the related command in this [Docker startup file](Docker/noetic.bash).
+Following the programming habits mentioned in the previous section, this repository contains multiple `ROS` packages rather than using the entire repository as a single `ROS` package (as I used to do before; you shouldn't do this as it's a bad habit).
 
-Therefore, the folder structure of this repository will look like this:
+I have created separate git repository for each individual functionality package.
+
+During actual testing with `Docker`, I clone these packages' repositories into the `src/` directory, so they exist in the `/catkin_ws/src/` directory when the container environment is started.
+
+Thus, the folder structure of this repository would roughly be as follows:
 
 ```bash{.line-numbers}
 s_s_ros/
@@ -64,22 +68,49 @@ s_s_ros/
     └── pkg_robot
 ```
 
-- The `Docker` directory contains files for building and starting the Docker environment, along with related instructions.
+- The `docker` directory contains files for building and starting `Docker` environments as well as related explanations.
 - The `docs` directory contains various documentation.
-- Those folders under `src` starting with `pkg_` are packages added for various features; using `pkg_` as a prefix might look strange, but it groups them together, so I stick with that.
+- The `src` directory is empty or contains only a few `pkg_` prefixed packages that are still under development; I will create separate repositories for them and remove them after completion.
 
-After the Docker container starts and before the first catkin_make, the directory structure in the container should roughly be as follows:
+After the `Docker` container is started, the directory seen in the virtual environment will roughly be as follows:
+
 ```bash{.line-numbers}
 catkin_ws/
 └── src
-    ├── pkg_camera
-    ├── pkg_grasp_main
-    ├── pkg_gripper
-    └── pkg_robot
+  ├── Universal_Robots_ROS_Driver
+  ├── pkg_grasp_main
+  ├── pkg_urdf
+  ├── pkg_virtual_camera
+  ├── realsense2_description
+  ├── realsense_camera
+  ├── realsense_gazebo_plugin
+  ├── roboticsgroup_gazebo_plugins
+  ├── robotiq
+  ├── robotiq_description
+  ├── robotiq_gripper
+  ├── universal_robot
+  ├── ur5_gripper_moveit
+  ├── ur5_robot
+  └── ur5_robot_gripper
 ```
+More repositories will show up than what you saw outside the container, as they contain repositories we clone during the building of the docker image.
+
+> :memo:
+> This includes not only my custom repositories but also some official libraries like those for robots, grippers, and cameras. You can find which are my custom repositories in the comments of the dockerfile as follows:
+```bash{.line-numbers}
+# Clone my customized repositories
+RUN cd /catkin_ws/src && \
+    git clone https://github.com/OneOneLiu/realsense_camera.git && \
+    git clone https://github.com/OneOneLiu/robotiq_gripper.git && \
+    git clone https://github.com/OneOneLiu/ur5_robot.git && \
+    git clone https://github.com/OneOneLiu/ur5_gripper_moveit.git && \
+    git clone https://github.com/OneOneLiu/ur5_robot_gripper.git
+```
+> These custom repositories are automatically synchronized when starting the container using the [`entrypoint.sh`](docker/entrypoint.sh) file.
 
 ### 2.4. Usage Instruction
-This repository is a modular tutorial. Each folder starting with `pkg_` is a separate `ROS` software package, such as camera package (`pkg_camera`), etc. Each package contains its own source code and test files, which can be used independently.
+This repository is a modular tutorial for beginners, each custom repository clone in the `dockerfile` is an individual functional package, such as using cameras, using grippers, etc. Each package contains its own source code and test files, which can be used separately for reference.
+
 ## 3. Common Hardware Usage
 
 - For using the `Intel Realsense` camera, please refer to [`docs/Hardware/1.Realsense_camera.md`](docs/Hardware/1.Realsense_camera.md).
