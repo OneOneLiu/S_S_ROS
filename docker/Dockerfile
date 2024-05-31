@@ -38,23 +38,33 @@ RUN mkdir -p /catkin_ws/src && \
     apt-get install -y ros-${ROS_DISTRO}-moveit-ros-control-interface && \
     apt-get install -y ros-${ROS_DISTRO}-moveit-commander
 
-# Robotiq gripper
-RUN cd /catkin_ws/src && \
+# Robotiq gripper (gripper model, gazebo ros control plugin and usb communication interfaces)
+RUN mkdir -p /catkin_ws/src && \
+    cd /catkin_ws/src && \
     git clone https://github.com/filesmuggler/robotiq.git && \
     cp -r robotiq/robotiq_description/  .&& \
     rm -rf robotiq && \
     git clone https://github.com/roboticsgroup/roboticsgroup_gazebo_plugins && \
-    apt-get update && \
-    apt-get upgrade -y && \
+    git clone https://github.com/TAMS-Group/robotiq.git && \
     apt-get install -y ros-noetic-soem && \
-    apt-get install -y ros-noetic-socketcan-interface && \
-    apt-get install -y ros-noetic-rqt-controller-manager && \
-    apt-get install -y python3-tk
-    
-# For monitoring keyboard inputs
-RUN apt-get install -y kbd && \
-    pip install keyboard && \
-    pip install pynput
+    apt-get install ros-noetic-socketcan-interface && \
+    apt install ros-noetic-rqt-controller-manager && \
+    apt-get install -y python3-tk && \
+    apt-get install -y ros-noetic-ros-control ros-noetic-ros-controllers
+
+# Clone my custimized repositories
+RUN cd /catkin_ws/src && \
+    git clone https://github.com/OneOneLiu/realsense_camera.git && \
+    git clone https://github.com/OneOneLiu/robotiq_gripper.git && \
+    git clone https://github.com/OneOneLiu/ur5_robot.git && \
+    git clone https://github.com/OneOneLiu/ur5_gripper_moveit.git && \
+    git clone https://github.com/OneOneLiu/ur5_robot_gripper.git
+
+# Sync the cloned repositories every time the container is started
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["bash"]
 
 # Use rosdep to install all dependencies according to the package.xml files in all src folders
 # And compile the workspace

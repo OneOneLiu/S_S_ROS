@@ -11,16 +11,12 @@ docker run --rm -it \
     --env="DISPLAY=$DISPLAY" \
     --env="QT_X11_NO_MITSHM=1" \
     --env="XAUTHORITY=$XAUTH" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_camera:/catkin_ws/src/pkg_camera" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_robot:/catkin_ws/src/pkg_robot" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_gripper:/catkin_ws/src/pkg_gripper" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_grasp_main:/catkin_ws/src/pkg_grasp_main" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_urdf:/catkin_ws/src/pkg_urdf" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_robot_gripper:/catkin_ws/src/pkg_robot_gripper" \
-    --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_ur_gripper_moveit:/catkin_ws/src/pkg_ur_gripper_moveit" \
     --volume="/home/$USER/catkin_ws/src/s_s_ros/src/pkg_virtual_camera:/catkin_ws/src/pkg_virtual_camera" \
     --volume="/dev/bus/usb:/dev/bus/usb" \
     --volume="/tmp/.docker.xauth:/tmp/.docker.xauth:rw" \
+    --volume="/home/$USER/.ssh_docker:/root/.ssh" \
     --net=host \
     --privileged \
     --env="NVIDIA_DRIVER_CAPABILITIES=all" \
