@@ -33,7 +33,7 @@ Also, it is important to organize and partition the folders properly within each
 It is recommended to use `Docker` for  developing and testing all `ROS` projects. This greatly reduces issues caused by environment configuration and improves work efficiency. Borrowing a phrase used for `python`:
 > `Life is short, you need Docker`!
 
-This repository provides a simple Docker startup command, which is located in the [`./Docker`](Docker) directory. Read the [`README.md`](Docker/README.md) file inside for instructions.
+This repository provides a simple Docker startup command, which is located in the [`./docker`](docker) directory. Read the [`README.md`](docker/README.md) file inside for instructions.
 
 > - Here is a great video tutorial for `Docker` and `ROS`: https://www.youtube.com/watch?v=qWuudNxFGOQ
 

@@ -33,7 +33,7 @@ git clone https://github.com/OneOneLiu/s_s_ros.git
 建议使用`Docker`进行所有`ROS`项目的测试和开发, 这会极大地减少环境配置所带来的问题, 提高工作效率. 借用一下形容 `python` 的话:
 > `Life is short, you need Docker`!
 
-本仓库提供了傻瓜式的docker启动命令, 就放在[`./Docker`](Docker)目录下, 去读一下里面的[`README.md`](Docker/README.md)就知道怎么用了.
+本仓库提供了傻瓜式的docker启动命令, 就放在[`./docker`](docker)目录下, 去读一下里面的[`README.md`](docker/README.md)就知道怎么用了.
 
 > - 这是一个很不错的视频教程: https://www.youtube.com/watch?v=qWuudNxFGOQ
 
